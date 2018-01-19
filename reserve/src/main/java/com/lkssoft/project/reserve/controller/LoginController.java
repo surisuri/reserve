@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lkssoft.project.reserve.system.security.CustomLogoutSuccessHandler;
 
 @Controller
-public class LoginController {
+public class LoginController { 
 	
 	@RequestMapping(value = "/perform_logout", method = RequestMethod.GET)
 	public ModelAndView perform_logout(HttpServletRequest request, HttpServletResponse response) {
