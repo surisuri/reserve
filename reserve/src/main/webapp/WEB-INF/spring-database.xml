@@ -7,9 +7,14 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/schd" />
+		<property name="url" value="jdbc:mysql://c.ctssgqzbfkud.ap-northeast-2.rds.amazonaws.com:3306/reserve" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="apfhd9898" />
+
+		<!--  <property name="url" value="jdbc:mysql://localhost:3306/schd" />
+		<property name="username" value="root" />
+		<property name="password" value="root" /> -->
+		
 	</bean>
 
 </beans>
