@@ -67,7 +67,7 @@
 		$(document).ready(
 			function() {
 				var initialLocaleCode = 'ko';
-		
+		/*
                 var source =
                 {
                     datatype: "json",
@@ -75,7 +75,7 @@
                         { name: 'inspectionCode' },
                         { name: 'inspectionName' }
                     ],
-                    url: 'selectListMedicalCharge',
+                    //url: 'selectListMedicalCharge',
                     async: false
                 };
                 var dataAdapter = new $.jqx.dataAdapter(source);
@@ -87,7 +87,7 @@
                 // trigger the select event.
                 $("#inspection").on('select', function (event) {
                     if (event.args) {
-                        /*var item = event.args.item;
+                        var item = event.args.item;
                         if (item) {
                             var valueelement = $("<div></div>");
                             valueelement.text("Value: " + item.value);
@@ -96,10 +96,10 @@
                             $("#selectionlog").children().remove();
                             $("#selectionlog").append(labelelement);
                             $("#selectionlog").append(valueelement);
-                        }*/
+                        }
                     }
                 });
-				
+				*/
 				$("#registerSchedule").on('click', function() {
 					fn_register();
 				});
@@ -428,6 +428,7 @@
 					endDate : end
 				},
 				success : function(doc) {
+					
 					var sources = fn_search(g_start, g_end);
 					$('#calendar').fullCalendar('removeEventSource', sources);
 					$('#calendar').fullCalendar('refetchEvents');

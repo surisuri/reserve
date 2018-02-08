@@ -14,13 +14,13 @@
         		   , CREATE_USR_ID 
         		   , UPDATE_DT
         		   , UPDATE_USR_ID
- 		  FROM MEDICALCHARGE
+ 		  FROM medicalcharge
  		  ORDER BY TREAT_DVS_CD ASC
      </select>
   
     <insert id="insertMedicalCharge" parameterType="com.lkssoft.project.reserve.charge.svc.MedicalChargeVO">
    											       
-			INSERT INTO MEDICALCHARGE (
+			INSERT INTO medicalcharge (
 					 INSPECTION_CODE
 	 		       , INSPECTION_NAME
 	 		       , REMARK
@@ -36,7 +36,7 @@
                     , #{remark}
                     , #{charge}
                     , #{treatDvsCd}
-                    , NOW()
+                    , NOW()ss
                     , #{createUsrId}
                     , NOW()
                     , #{updateUsrId}
@@ -44,7 +44,7 @@
     </insert>
       
     <update id="updateMedicalCharge" parameterType="com.lkssoft.project.reserve.charge.svc.MedicalChargeVO">
-	   UPDATE MEDICALCHARGE
+	   UPDATE medicalcharge
               SET  INSPECTION_NAME = #{inspectionName}
 	              , REMARK = #{remark}
 	               , CHARGE = #{charge}
@@ -55,7 +55,7 @@
 	</update>
 	
 	<delete id="deleteMedicalCharge" parameterType="com.lkssoft.project.reserve.charge.svc.MedicalChargeVO">
-		DELETE FROM MEDICALCHARGE
+		DELETE FROM medicalcharge
 		  WHERE INSPECTION_CODE = #{inspectionCode}
 	</delete>
 </mapper>

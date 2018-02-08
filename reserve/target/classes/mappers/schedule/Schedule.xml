@@ -5,7 +5,7 @@
   
   	<select id="nextSequeceNumber" resultType="java.lang.String">
   		    SELECT IFNULL(MAX(CAST(SCHEDULE_ID AS UNSIGNED)), 0) + 1
-  		  FROM SCHEDULE
+  		  FROM schedule
   	</select>
   
     <select id="selectListEvent" parameterType="com.lkssoft.project.reserve.schedule.svc.ScheduleVO" 
@@ -27,13 +27,13 @@
         		   , CREATE_USR_ID 
         		   , UPDATE_DT
         		   , UPDATE_USR_ID
- 		  FROM SCHEDULE
+ 		  FROM schedule
  		 WHERE EVENT_DATE BETWEEN STR_TO_DATE(#{startDate}, '%Y-%m-%d') AND STR_TO_DATE(#{endDate}, '%Y-%m-%d')
  		   AND DELETE_YN = 'N'
      </select>
   
     <insert id="insertSchedule" parameterType="com.lkssoft.project.reserve.schedule.svc.ScheduleVO">
-				INSERT INTO SCHEDULE (
+				INSERT INTO schedule (
 						 SCHEDULE_ID
             		   , EVENT_DATE 
             		   , EVENT_START_TIME 
@@ -65,7 +65,7 @@
     </insert>
     
     <update id="updateSchedule" parameterType="com.lkssoft.project.reserve.schedule.svc.ScheduleVO">
-	   UPDATE SCHEDULE
+	   UPDATE schedule
                  SET 
                  EVENT_DATE = #{eventDate}
                  , EVENT_START_TIME = #{eventStartTime}
@@ -83,7 +83,7 @@
 	</update> 
 	
     <delete id="deleteSchedule" parameterType="com.lkssoft.project.reserve.schedule.svc.ScheduleVO">
-	   UPDATE SCHEDULE
+	   UPDATE schedule
           SET DELETE_YN = IFNULL(#{deleteYn}, 'N')	
         WHERE SCHEDULE_ID = #{scheduleId}
     </delete>   

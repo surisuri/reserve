@@ -21,6 +21,9 @@
 	
 	<title>Login</title>
 	
+	<!-- prevent favicon.ico -->
+	<link rel="shortcut icon" href="">
+	
 	<!-- Bootstrap Core CSS -->
 	<link href="${admin}/vendor/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet">
