@@ -1,6 +1,5 @@
 package com.lkssoft.project.reserve.controller;
 
-import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -14,9 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PageController {
-	
-	Logger logger = Logger.getLogger(this.getClass());
-	
+		
 	/**
 	 * login page
 	 * 
@@ -28,8 +25,6 @@ public class PageController {
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 		@RequestParam(value = "logout", required = false) String logout) {
 
-	  logger.debug("login controller..");	
-		
 	  ModelAndView model = new ModelAndView();
 	  if (error != null) {
 		model.addObject("error", "Invalid username and password!");
@@ -39,11 +34,7 @@ public class PageController {
 		model.addObject("msg", "You've been logged out successfully.");
 	  }
 	 
-	  logger.debug("before login");	
-
 	  model.setViewName("login");
-
-	  logger.debug("after login");	
 
 	  return model;
 

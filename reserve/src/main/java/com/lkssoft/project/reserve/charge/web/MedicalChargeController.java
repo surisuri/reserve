@@ -49,7 +49,7 @@ public class MedicalChargeController {
 	 * @throws Exception
 	 *             예외처리
 	 */
-	@RequestMapping(value = "selectListMedicalCharge", method = RequestMethod.POST)
+	@RequestMapping(value = "/selectListMedicalCharge", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String, Object>> selectListMedicalCharge(HttpServletRequest req) throws Exception {
 		List<Map<String, Object>> results = medicalChargeSEI.selectListMedicalCharge();
 		return results;
