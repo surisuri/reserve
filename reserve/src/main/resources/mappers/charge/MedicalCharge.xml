@@ -15,7 +15,6 @@
         		   , UPDATE_DT
         		   , UPDATE_USR_ID
  		  FROM medicalcharge
- 		  ORDER BY TREAT_DVS_CD ASC
      </select>
   
     <insert id="insertMedicalCharge" parameterType="com.lkssoft.project.reserve.charge.svc.MedicalChargeVO">
@@ -36,7 +35,7 @@
                     , #{remark}
                     , #{charge}
                     , #{treatDvsCd}
-                    , NOW()ss
+                    , NOW()
                     , #{createUsrId}
                     , NOW()
                     , #{updateUsrId}

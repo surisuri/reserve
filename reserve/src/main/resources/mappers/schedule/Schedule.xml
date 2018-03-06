@@ -16,7 +16,10 @@
         		   , EVENT_START_TIME 
         		   , EVENT_END_TIME 
         		   , PATIENT_NAME
-        		   , TREAT_DVS_CODE 
+        		   , TREAT_DVS_CODE
+        		   , (SELECT inspection_name
+                  FROM medicalcharge b
+			     WHERE b.inspection_Code = a.treat_dvs_code ) "TREAT_DVS_NAME"
         		   , SIMPLE_MSG_CTNT
         		   , EVENT_STATUS
         		   , EXAM_USR_NM 
@@ -27,7 +30,7 @@
         		   , CREATE_USR_ID 
         		   , UPDATE_DT
         		   , UPDATE_USR_ID
- 		  FROM schedule
+ 		  FROM schedule a
  		 WHERE EVENT_DATE BETWEEN STR_TO_DATE(#{startDate}, '%Y-%m-%d') AND STR_TO_DATE(#{endDate}, '%Y-%m-%d')
  		   AND DELETE_YN = 'N'
      </select>

@@ -4,6 +4,8 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <spring:url var="admin" value="/resources/sb-admin" />
+<spring:url var="images" value="/resources/images" />
+
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,6 +22,9 @@
 	<meta http-equiv='pragma' content='no-cache'>
 	
 	<title>Login</title>
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${images}/favicon.ico" >
 	
 	<!-- prevent favicon.ico -->
 	<link rel="shortcut icon" href="">

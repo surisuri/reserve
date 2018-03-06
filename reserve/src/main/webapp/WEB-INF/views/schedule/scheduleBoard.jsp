@@ -6,6 +6,7 @@
 <spring:url var="calendar" value="/resources/fullcalendar" />
 <spring:url var="admin" value="/resources/sb-admin" />
 <spring:url var="jqwidjets" value="/resources/jqwidgets" />
+<spring:url var="images" value="/resources/images" />
 
 <!-- spring security 인증객체 -->
 <sec:authentication var="user" property="principal" />
@@ -19,6 +20,9 @@
 	<meta name="author" content="">
 	
 	<title>심리실 일정</title>
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${images}/favicon.ico" >
 	
 	<!-- Bootstrap Core CSS -->
 	<link href="${admin}/vendor/bootstrap/css/bootstrap.min.css"
@@ -71,7 +75,6 @@
 		
 				
 				/**
-				 *
 				 *  검사종류 콤보박스
 				 */
                 var source =
@@ -95,28 +98,33 @@
                  * validator initialize
                  */
                 $('#scheduleForm').jqxValidator({
+                		hintType: 'label',
                 		rules: [
-                			{ input: '#patientName', message: '환자명은 필수입력 항목입니다.', action: 'keyup, blur', rule: 'required'	},
-                         { input: '#patientName', message: '환자명은 10자 이내로 입력하세요.', action: 'keyup, blur', rule: 'length=1,10' },
-                			{ input: '#prescriberUsrNm', message: '처방자는 필수입력 항목입니다.', action: 'keyup, blur', rule: 'required'	},
-                         { input: '#prescriberUsrNm', message: '처방자는 10자 이내로 입력하세요.', action: 'keyup, blur', rule: 'length=1,10' },
+                			{ input: '#patientName', message: '환자명을 한글기준 20자 이내로 입력하세요.',
+                				 action: 'keyup, blur', rule: function (input, commit) {
+                                     var name = $('#patientName').val();
+                                     var nameBytes = getTextLength(name);
+                                     
+                                     var result = false;
+                                     if( 0 < nameBytes && nameBytes <= 40 ){
+                                    	 	result = true;
+                                     }else{
+                                    	  	result = false;
+                                     }
+                                     
+                                     return result;
+                                 }
+                			},
+                         { input: '#prescriberUsrNm', message: '처방자는 10자 이내로 입력하세요.', action: 'keyup, blur', rule: 'length=0,10' },
                          { input: '#simpleMsgCtnt', message: '간단메시지는 20자 이내로 입력하세요.', action: 'keyup, blur', rule: 'length=0,20' },
                 		]
                 });
                 
-                // validation fail
-			    $('#scheduleForm').on('validationError', function (event) {
-				     alert('이름, 처방자, 간단메시지 입력항목을 확인해보세요.');
-				     return;
-				});
-				
-                // validation pass
-			    $('#scheduleForm').on('validationSuccess', function (event) {  
+                $('#scheduleForm').on('validationSuccess', function (event) {  
 			    		fn_register();
-				});                 
+				});                
                 
 				$("#registerSchedule").on('click', function() {
-					// validation check
 					$('#scheduleForm').jqxValidator('validate');
 				});
 				
@@ -217,7 +225,7 @@
 											$.map(doc.objList, function(r) {
 												var title = '';
 												if( r.PATIENT_NAME != null && r.PATIENT_NAME != '' && r.PATIENT_NAME != 'undefined'){
-													title = r.PATIENT_NAME + " (" + r.EXAM_USR_NM + ")";
+													title = r.PATIENT_NAME + " (" + r.TREAT_DVS_NAME + ")"+", "+r.EXAM_USR_NM;
 												}else{
 													title = '';
 												}
@@ -327,7 +335,7 @@
 					
 							var title = '';
 							if( r.PATIENT_NAME != null && r.PATIENT_NAME != '' && r.PATIENT_NAME != 'undefined'){
-								title = r.PATIENT_NAME + " (" + r.EXAM_USR_NM + ")";
+								title = r.PATIENT_NAME + " (" + r.TREAT_DVS_NAME + ")"+", "+r.EXAM_USR_NM;
 							}else{
 								title = '';
 							}
@@ -432,8 +440,6 @@
 			var start = $('#startBatchDate').val();
 			var end   = $('#endBatchDate').val();
 				
-			// need validate
-			
 			jQuery.ajax({
 				url : 'registerScheduleBatch',
 				type : 'POST',
@@ -503,6 +509,19 @@
 			});
 		}
 		
+		/**
+		 * 한글포함 문자열 길이를 구한다
+		 */
+		function getTextLength(str) {
+		    var len = 0;
+		    for (var i = 0; i < str.length; i++) {
+		        if (escape(str.charAt(i)).length == 6) {
+		            len++;
+		        }
+		        len++;
+		    }
+		    return len;
+		}
 	</script>
 	
 	<style>
@@ -511,9 +530,10 @@
 			margin: 0 auto;
 		}
 	</style>
-	</head>
 
-	<body>
+</head>
+
+<body>
 	
 		<div id="wrapper">
 	

@@ -10,6 +10,7 @@ public class ScheduleVO extends CommonVO{
 	private String eventEndTime;
 	private String patientName;
 	private String treatDvsCode;
+	private String treatDvsName;
 	private String simpleMsgCtnt;
 	private String eventStatus;
 	private String examUsrNm;
@@ -160,5 +161,17 @@ public class ScheduleVO extends CommonVO{
 	}
 	public void setScheduleBatchCreateYn(String scheduleBatchCreateYn) {
 		this.scheduleBatchCreateYn = scheduleBatchCreateYn;
+	}
+	/**
+	 * @return the treatDvsName
+	 */
+	public String getTreatDvsName() {
+		return treatDvsName;
+	}
+	/**
+	 * @param treatDvsName the treatDvsName to set
+	 */
+	public void setTreatDvsName(String treatDvsName) {
+		this.treatDvsName = treatDvsName;
 	}
 }

@@ -7,6 +7,7 @@
 <spring:url var="calendar" value="/resources/fullcalendar" />
 <spring:url var="admin" value="/resources/sb-admin" />
 <spring:url var="jqwidjets" value="/resources/jqwidgets" />
+<spring:url var="images" value="/resources/images" />
 
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,9 @@
 	
 	<title>심리실 일정</title>
 	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${images}/favicon.ico" >
+		
 	<!-- Bootstrap Core CSS -->
 	<link href="${admin}/vendor/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet">
